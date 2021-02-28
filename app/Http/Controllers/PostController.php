@@ -14,7 +14,7 @@ class PostController extends Controller
     }
 
     public function show(Post $id){
-        return view('posts.show', ['article' => $id]);
+        return view('posts.show', ['post' => $id]);
     }
 
     public function create(){
@@ -34,5 +34,9 @@ class PostController extends Controller
             'image' => 'required',
             'category_id' => 'required'
         ]);
+    }
+
+    public function edit(Post $id){
+        return view('posts.edit', ['post' => $id]);
     }
 }
