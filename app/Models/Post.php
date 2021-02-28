@@ -9,13 +9,17 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+
     protected $dates = ['deleted_at'];
+
+    protected $fillable = ['title', 'body', 'image', 'category_id'];
 
     public function user(){
         return $this->belongsTo(Post::class);
     }
 
     public function category(){
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
