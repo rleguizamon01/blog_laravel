@@ -30,7 +30,7 @@
                 </li>
 
                 <li class="nav-item {{ Route::is('posts.create') ? 'active' : '' }}">
-                 <a class="nav-link" href="{{ route('posts') }}"> Create post </a>
+                 <a class="nav-link" href="{{ route('posts.create') }}"> Create post </a>
                 </li>
             </ul>      
         
