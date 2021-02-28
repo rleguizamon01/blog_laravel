@@ -27,6 +27,16 @@ class PostController extends Controller
         return redirect(route('posts.index'));
     }
 
+    public function edit(Post $id){
+        return view('posts.edit', ['post' => $id]);
+    }
+
+    public function update(Post $id){
+        $id->update($this->validatePost());
+
+        return redirect(route('posts.edit', $id->id));
+    }
+
     protected function validatePost(){
         return request()->validate([
             'title' => 'required',
@@ -34,9 +44,5 @@ class PostController extends Controller
             'image' => 'required',
             'category_id' => 'required'
         ]);
-    }
-
-    public function edit(Post $id){
-        return view('posts.edit', ['post' => $id]);
     }
 }
