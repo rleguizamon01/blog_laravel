@@ -21,4 +21,18 @@ class PostController extends Controller
         return view('posts.create');
     }
     
+    public function store(){
+        Post::create($this->validatePost());
+
+        return redirect(route('posts.index'));
+    }
+
+    protected function validatePost(){
+        return request()->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'image' => 'required',
+            'category_id' => 'required'
+        ]);
+    }
 }
