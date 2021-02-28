@@ -16,5 +16,9 @@ class PostController extends Controller
     public function show(Post $id){
         return view('posts.show', ['article' => $id]);
     }
+
+    public function create(){
+        return view('posts.create');
+    }
     
 }
