@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $dates = ['deleted_at'];
+
     public function user(){
         return $this->belongsTo(Post::class);
     }

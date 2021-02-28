@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $dates = ['deleted_at'];
+
     public function post(){
         return $this->belongsTo(Post::class);
     }

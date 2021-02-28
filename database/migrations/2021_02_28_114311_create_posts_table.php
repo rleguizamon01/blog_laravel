@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('image');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')
                 ->references('id')
