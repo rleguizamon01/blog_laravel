@@ -24,7 +24,7 @@ class PostController extends Controller
     public function store(){
         Post::create($this->validatePost());
 
-        return redirect(route('posts.index'));
+        return redirect()->route('posts.index');
     }
 
     public function edit(Post $id){
@@ -34,7 +34,13 @@ class PostController extends Controller
     public function update(Post $id){
         $id->update($this->validatePost());
 
-        return redirect(route('posts.edit', $id->id));
+        return redirect()->route('posts.edit', $id->id);
+    }
+
+    public function destroy(Post $id){
+        $id->delete();
+
+        return redirect()->route('posts.index');
     }
 
     protected function validatePost(){
