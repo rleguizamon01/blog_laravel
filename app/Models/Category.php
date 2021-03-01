@@ -14,6 +14,6 @@ class Category extends Model
     protected $dates = ['deleted_at'];
 
     public function post(){
-        return $this->hasOne(Post::class);
+        return $this->hasMany(Post::class);
     }
 }
