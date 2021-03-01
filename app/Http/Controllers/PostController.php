@@ -10,7 +10,7 @@ use Storage;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(5);
 
         return view('posts.index', compact('posts'));
     }
@@ -47,7 +47,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         Storage::delete('public/'.$post->image);
-        
+
         $post->title = $request->title;
         $post->body = $request->body;
         $post->category_id =  $request->category;

@@ -37,8 +37,10 @@
                     </div>
                 </div>
         @endforeach
+ 
+    </div>
 
-
-        
+    <div class="d-flex justify-content-center">
+            {{ $posts->links('pagination::bootstrap-4') }}
     </div>
 @endsection
