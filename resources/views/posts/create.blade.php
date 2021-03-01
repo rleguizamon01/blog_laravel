@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', 'Upload App')
+@section('title', 'Upload Post')
 
 @section('container')
     <div class="container">
-        <!-- Dev uploads app to database -->
+
         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group mt-3">
