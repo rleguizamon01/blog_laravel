@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use Storage;
 
 class PostController extends Controller
 {
@@ -37,16 +38,29 @@ class PostController extends Controller
     }
 
     public function edit(Post $id){
-        return view('posts.edit', ['post' => $id]);
+        return view('posts.edit', ['post' => $id, 'categories' => Category::all()]);
     }
 
-    public function update(Post $id){
-        $id->update($this->validatePost());
+    public function update(Request $request, $id){
+        $this->validatePost();
 
-        return redirect()->route('posts.edit', $id->id);
+        $post = Post::findOrFail($id);
+
+        Storage::delete('public/'.$post->image);
+        
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->category_id =  $request->category;
+        $post->image = $request->image->store('images', 'public');
+
+        $post->save();
+
+        return redirect()->route('posts.show', $id);
     }
 
     public function destroy(Post $id){
+        Storage::delete('public/'.$id->image);
+
         $id->delete();
 
         return redirect()->route('posts.index');
